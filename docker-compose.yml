@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis
+    container_name: queue_job_email_redis
+    ports:
+      - 11111:6379
+    networks:
+      - my-network
+  api:
+    build: ./api
+    container_name: queue_job_email_api
+    depends_on:
+      - redis
+    ports:
+      - 22222:44332
+    networks:
+      - my-network
+    volumes:
+      - ./api:/usr/app
+  worker:
+    build: ./worker
+    container_name: queue_job_email_worker
+    depends_on:
+      - redis
+    ports:
+      - 33333:33221
+    networks:
+      - my-network
+    volumes:
+      - ./worker:/usr/app
+
+networks:
+  my-network:
+    driver: bridge
