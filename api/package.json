@@ -1,0 +1,16 @@
+{
+  "name": "queue-job-email",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node-dev --respawn --deps=0 src/server.js"
+  },
+  "dependencies": {
+    "bull": "^4.6.2",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "node-dev": "^7.1.0"
+  }
+}
